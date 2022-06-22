@@ -35,6 +35,6 @@ app.get("/",(req,res) => {
     res.sendFile(__dirname + "/index.html")
 })
 
-app.post('/quotes', (req, res) => {
-    console.log("Product submission successfully sent to the database.")
+app.post('/stats', (req, res) => {
+    console.log("Stat update successfully sent to the database.")
   })
