@@ -10,18 +10,21 @@
 <body>
     <h1>Sean's Pokémon Team Builder</h1>
     <h2>Add a new Pokémon to your team:</h2>
-    <fieldset>
-        <legend>Team</legend>
-        <form action="/stats" method="POST">
-            <input type="text" placeholder="Pokémon" name="name">
-            <input type="text" placeholder="Nickname" name="quote">
-            <span>Level:</span><button type="submit">-</button><span>0</span><button type="submit">+</button>
-            <button type="submit">Submit</button>
-        </form>
-    </fieldset>
+    <div class="topleft">
+        <fieldset>
+            <legend>Add a Pokémon to your team</legend>
+            <form action="/stats" method="POST">
+                <input type="text" placeholder="Pokémon" name="name">
+                <input type="text" placeholder="Nickname" name="nickname">
+                <span>Level: </span><input type="number" name="level" min="1" max="100">
+                <button type="submit">Submit</button>
+            </form>
+        </fieldset>
+    </div>
 
     <fieldset>
         <legend>Your Current Team</legend>
     </fieldset>
+    <!-- <script src="public/js/main.js"></script> -->
 </body>
 </html>
