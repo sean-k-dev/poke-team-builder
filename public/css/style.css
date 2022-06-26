@@ -3,19 +3,59 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(141, 55, 55);
+}
+
+main {
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
 fieldset {
     margin-bottom: 100px;
 }
 
 h1 {
     font-size: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 25px;
+    text-align: center;
 }
 
 .topleft {
     display: flex;
+    justify-content: center;
 }
 
 #levelDown, #levelUp {
     font-weight: 800;
     cursor: pointer;
+}
+
+/* Current Team */
+
+.currentfield {
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+
+.team_title {
+    font-weight: 700;
+    padding-right: 7px;
+}
+
+.inner_title {
+    padding-left: 8px
 }
