@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express()
 const MongoClient = require("mongodb").MongoClient
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser")
 const PORT = 8000
-require('dotenv').config()
+require("dotenv").config()
 
 
 let db,
@@ -22,18 +22,23 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.get("/",(req,res) => {
-    res.sendFile(__dirname + "/index.html")
+app.get("/",(req, res) => {
+    db.collection("poke").find().toArray()
+    .then(result => {
+        console.log(result)
+        res.render("index.ejs", {poke: result})
+      })
+    .catch(error => console.error(error))
+   
 })
 
-
-app.post('/stats', (req, res) => {
+app.post("/stats", (req, res) => {
     db.collection("poke").insertOne(req.body)
     .then(result => {
         console.log("Update successfully sent to the database.")
         console.log(req.body)
         console.log(result)
-        res.redirect('/')
+        res.redirect("/")
     })
     .catch(error => console.error(error))
 })
