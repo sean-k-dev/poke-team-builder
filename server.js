@@ -29,7 +29,6 @@ app.get("/",(req, res) => {
         res.render("index.ejs", {poke: result})
       })
     .catch(error => console.error(error))
-   
 })
 
 app.post("/stats", (req, res) => {
