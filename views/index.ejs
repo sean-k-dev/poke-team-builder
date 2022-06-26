@@ -4,36 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Sean's Pokémon Team Builder</title>
 </head>
 <body>
-    <h1>Sean's Pokémon Team Builder</h1>
-    <h2>Add a new Pokémon to your team:</h2>
-    <div class="topleft">
-        <fieldset>
-            <legend>Add a Pokémon to your team</legend>
-            <form action="/stats" method="POST">
-                <input type="text" placeholder="Pokémon" name="name">
-                <input type="text" placeholder="Nickname" name="nickname">
-                <span>Level: </span><input type="number" name="level" min="1" max="100">
-                <button type="submit">Submit</button>
-            </form>
-        </fieldset>
-    </div>
+    <main>
+        <h1>Sean's Pokémon Team Builder</h1>
+        <h2>Add a new Pokémon to your team:</h2>
+        <div class="topleft">
+            <fieldset>
+                <legend>Add a Pokémon to your team</legend>
+                <form action="/stats" method="POST">
+                    <input type="text" placeholder="Pokémon" name="name" required>
+                    <input type="text" placeholder="Nickname" name="nickname" required>
+                    <span>Level: </span><input type="number" name="level" min="1" max="100" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </fieldset>
+        </div>
 
-    <fieldset>
-        <legend>Your Current Team</legend>
-        <ul class="current_team">
-            <% for(let i = 0; i < poke.length; i++) {%>
-                <li class="team_member">
-                    <span>Name: </span><span><%= poke[i].name %></span>
-                    <span>Nickname: </span><span><%= poke[i].nickname %></span>
-                    <span>Level: </span><span><%= poke[i].level %></span>
-                </li>
-            <% } %>
-        </ul>
-    </fieldset>
-    <!-- <script src="public/js/main.js"></script> -->
+        <div class="currentfield">
+            <fieldset>
+                <legend>Your Current Team</legend>
+                <ul class="current_team">
+                    <% for(let i = 0; i < poke.length; i++) {%>
+                        <li class="team_member">
+                            <span class="team_title">Name: </span><span><%= poke[i].name %></span>
+                            <span class="team_title inner_title">Nickname: </span><span><%= poke[i].nickname %></span>
+                            <span class="team_title inner_title">Level: </span><span><%= poke[i].level %></span>
+                        </li>
+                    <% } %>
+                </ul>
+            </fieldset>
+        </div>
+        <script src="/js/main.js"></script>
+    </main>
 </body>
 </html>
