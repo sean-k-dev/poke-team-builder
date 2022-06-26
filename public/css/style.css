@@ -10,3 +10,12 @@ fieldset {
 h1 {
     font-size: 30px;
 }
+
+.topleft {
+    display: flex;
+}
+
+#levelDown, #levelUp {
+    font-weight: 800;
+    cursor: pointer;
+}
