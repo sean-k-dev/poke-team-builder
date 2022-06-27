@@ -42,6 +42,31 @@ app.post("/stats", (req, res) => {
     .catch(error => console.error(error))
 })
 
+app.put("/favourite", (req, res) => {
+    db.collection("poke").updateOne(req.body,{
+        $set: {
+            favourite: req.body.favourite = true
+          }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log(`Set ${req.body.name} as a favourite.`)
+        response.json("Added to favourites")
+    })
+    .catch(error => console.error(error))
+})
+
+app.delete("/poke", (req, res) => {
+    db.collection("poke").deleteOne({name: req.body.name})
+    .then(result => {
+        res.json(`Removed Pokémon from the team`)
+    })
+    .catch(error => console.error(error))
+})
+
+
 app.listen(process.env.PORT || PORT, () => {
     console.log(`The server is now running on port ${PORT}`)
 })
