@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Ubuntu:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Ubuntu", sans-serif;
     box-sizing: border-box;
 }
 
@@ -8,11 +10,13 @@ body {
 }
 
 main {
-    width: 50%;
+    width: 60%;
+    min-width: 1000px;
     margin: auto;
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
+    position: relative;
 }
 
 fieldset {
@@ -22,6 +26,30 @@ fieldset {
 h1 {
     font-size: 30px;
     text-align: center;
+    font-family: "Bungee";
+}
+
+.h1img {
+    width: 40px;
+    position: absolute;
+    max-width: 60%;
+}
+
+.imgone {
+    margin: auto auto 0;
+}
+
+.imgtwo {
+    bottom: 0;
+}
+
+.imgthree {
+    right: 0;
+}
+
+.imgfour {
+    bottom: 0;
+    right: 0;
 }
 
 h2 {
@@ -46,16 +74,40 @@ h2 {
     justify-content: center;
 }
 
+#teamQuantity {
+    color: green;
+}
+
 li {
     list-style-type: none;
-    padding-bottom: 20px;
+    padding: 15px 0px;
+}
+
+.listgrid {
+    display: grid;
+    width: 700px;
+    grid-template-columns: 10% 22% 13% 22% 8% 7% 11% 7%;
+    grid-template-rows: 50px;
+    grid-template-areas: 
+    "name name nickname nickname level level favourite remove";
 }
 
 .team_title {
     font-weight: 700;
-    padding-right: 7px;
 }
 
-.inner_title {
-    padding-left: 8px
+.fa-star:hover {
+    color: gold;
+    font-weight: 700;
 }
+
+.fa-trash-can:hover {
+    color: red;
+    font-weight: 700;
+}
+
+.fa-trash-can::selection {
+    color: rgb(170, 31, 31);
+    font-weight: 800;
+}
+
