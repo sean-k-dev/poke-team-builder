@@ -5,10 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/pokemon.png">
     <title>Sean's Pokémon Team Builder</title>
 </head>
 <body>
     <main>
+        <img class="h1img imgone" src="/pokemon.png">
+        <img class="h1img imgtwo" src="/pokemon.png">
+        <img class="h1img imgthree" src="/pokemon.png">
+        <img class="h1img imgfour" src="/pokemon.png">
         <h1>Sean's Pokémon Team Builder</h1>
         <h2>Add a new Pokémon to your team:</h2>
         <div class="topleft">
@@ -18,26 +23,31 @@
                     <input type="text" placeholder="Pokémon" name="name" required>
                     <input type="text" placeholder="Nickname" name="nickname" required>
                     <span>Level: </span><input type="number" name="level" min="1" max="100" required>
-                    <button type="submit">Submit</button>
+                    <button id="submit" type="submit">Submit</button>
                 </form>
             </fieldset>
         </div>
 
         <div class="currentfield">
             <fieldset>
-                <legend>Your Current Team</legend>
+                <legend>Your Current Team <span id="teamQuantity">( of 6)</span></legend>
                 <ul class="current_team">
                     <% for(let i = 0; i < poke.length; i++) {%>
                         <li class="team_member">
-                            <span class="team_title">Name: </span><span><%= poke[i].name %></span>
-                            <span class="team_title inner_title">Nickname: </span><span><%= poke[i].nickname %></span>
-                            <span class="team_title inner_title">Level: </span><span><%= poke[i].level %></span>
+                            <div class="listgrid">
+                                <span class="team_title">Name: </span><span id="name"><%= poke[i].name %></span>
+                                <span class="team_title inner_title">Nickname: </span><span><%= poke[i].nickname %></span>
+                                <span class="team_title inner_title">Level: </span><span><%= poke[i].level %></span>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-trash-can" id="deletePokemon"></i>
+                            </div>
                         </li>
                     <% } %>
                 </ul>
             </fieldset>
         </div>
         <script src="/js/main.js"></script>
+        <script src="https://kit.fontawesome.com/a10b503942.js" crossorigin="anonymous"></script>
     </main>
 </body>
 </html>
