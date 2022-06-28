@@ -1,31 +1,77 @@
-const quantityColour = () => li_length < 6 ? teamQuantity.style.color = 'green' : teamQuantity.style.color = 'red'
+const quantityColour = () => pokeList.length < 6 ? teamQuantity.style.color = 'green' : teamQuantity.style.color = 'red'
 
 window.onload = function() {
     updateQuantity();
     quantityColour()
 }
 
-const li_length = document.querySelectorAll(".current_team li").length
-const updateQuantity = () => teamQuantity.innerText = `(${li_length} of 6)`
+const pokeList = document.querySelectorAll(".current_team li")
+const updateQuantity = () => teamQuantity.innerText = `(${pokeList.length} of 6)`
 const teamQuantity = document.querySelector('#teamQuantity')
-const deletePokemon = document.querySelector('#deletePokemon')
 const submitForm = document.querySelector('#submit').addEventListener('click', updateQuantity, quantityColour)
 
 
-deletePokemon.addEventListener('click', () => {
-    const pName = this.parentNode.childNodes[3].innerText
-    fetch('/poke', {
-        method: 'delete',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            'name': pName
-        })
-    })
-    .then(res => {
-        if (res.ok) return res.json()
-    })
-    .then(data => {
-        window.location.reload()
-    })
+// Delete and Favourite Buttons
+
+const deleteRow = document.querySelectorAll('.fa-trash-can')
+const addToFavourites = document.querySelectorAll('.fa-star')
+
+Array.from(deleteRow).forEach(x => {
+    x.addEventListener('click', deletePokemon)
 })
 
+Array.from(addToFavourites).forEach(x => {
+    x.addEventListener('click', addFave)
+})
+
+function addFave() {
+    const pName = this.parentNode.childNodes[2].innerText
+    const pLevel = this.parentNode.childNodes[8].innerText
+    const star = addToFavourites
+    fetch('/favourite', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': pName,
+              'level': pLevel,
+              'favourite': star
+            })
+          })
+        .then(res => {
+            res.json("Added to favourites")
+        })
+        .then(data => {
+            console.log(data)
+            location.reload()
+        })
+        .catch(error => console.log(error))
+}
+
+function deletePokemon() {
+    const pName = this.parentNode.childNodes[2].innerText
+    const pLevel = this.parentNode.childNodes[8].innerText
+    fetch('/deletePoke', {
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'name': pName,
+                'level': pLevel
+            })
+        })
+        .then(res => {
+            res.json("Pokémon deleted")
+        })
+        .then(data => {
+            location.reload()
+        })
+        .catch(error => console.log(error))
+}
+
+// function checkLength() {
+//     document.querySelectorAll(".current_team li")
+//     if (pokeList.length === 6) {
+//         pokeList.parentNode.removeChild(li[7])
+//     } else {
+//         updateQuantity()
+//     }
+// }
