@@ -46,15 +46,14 @@ app.post("/stats", (req, res) => {
 app.put("/favourite", (req, res) => {
     db.collection("poke").updateOne(req.body,{
         $set: {
-            favourite: req.body.favourite = true
+            favourite: req.body.favourite
           }
     },{
-        sort: {_id: -1},
         upsert: true
     })
     .then(result => {
         console.log(`Set ${req.body.name} as a favourite.`)
-        response.json("Added to favourites")
+        res.json("Added to favourites")
     })
     .catch(error => console.error(error))
 })
