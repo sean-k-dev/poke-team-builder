@@ -27,14 +27,13 @@ Array.from(addToFavourites).forEach(x => {
 function addFave() {
     const pName = this.parentNode.childNodes[2].innerText
     const pLevel = this.parentNode.childNodes[8].innerText
-    const star = addToFavourites
     fetch('/favourite', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               'name': pName,
               'level': pLevel,
-              'favourite': star
+              'favourite': true
             })
           })
         .then(res => {
@@ -66,6 +65,55 @@ function deletePokemon() {
         })
         .catch(error => console.log(error))
 }
+
+// PokéAPI fetch
+
+let activeSpecies = ""
+let searchQuery = document.querySelector('.search input')
+
+function findSpecies() {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${activeSpecies}`)
+        .then(res => res.json())
+        .then (data => {
+            console.log(data)
+            clearDropdown(document.getElementById('abilityField'))
+            document.querySelector('#pokeNameField').value = data.name.charAt(0).toUpperCase() + data.name.slice(1,data.name.length)
+            for (let i = 0; i < data.abilities.length; i++){
+                let opt = document.createElement('option')
+                opt.value = data.abilities[i].ability.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
+                console.log(opt.value)
+                opt.innerHTML = data.abilities[i].ability.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
+                opt.classList = "ability-dropdown"
+                document.querySelector('#abilityField').appendChild(opt)
+            }
+            document.querySelector("#previewSprite").src = data.sprites.front_default
+            document.querySelector("#previewSprite").name = data.sprites.front_default
+        })
+        .catch(err => {console.log(`error ${err}`)})
+}
+
+
+
+document.querySelector('#search').addEventListener('click', () => {
+  activeSpecies = searchQuery.value.toLowerCase()
+  findSpecies()
+})
+
+// Activate search upon pressing Enter key
+document.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("search").click();
+  }
+});
+
+ function clearDropdown(opt) {
+    let length = opt.options.length -1
+    for(let i = length; i >= 0; i--) {
+        opt.remove(i)
+    }
+ }
+ 
 
 // function checkLength() {
 //     document.querySelectorAll(".current_team li")

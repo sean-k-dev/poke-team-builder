@@ -19,14 +19,34 @@ main {
     position: relative;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.search input {
+    width: 40%;
+    height: 23px;
+    caret-color: rgb(16, 88, 38);
+    font-family: 'Ubuntu', 'Roboto', 'Helvetica', sans-serif;
+    font-size: 16px;
+    color: rgb(16, 88, 38);
+    position: relative;
+}
+
 fieldset {
     margin-bottom: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
 }
 
 h1 {
     font-size: 30px;
     text-align: center;
     font-family: "Bungee";
+    padding: 30px 0px;
 }
 
 .h1img {
@@ -55,16 +75,31 @@ h1 {
 h2 {
     font-size: 25px;
     text-align: center;
+    padding-bottom: 15px;
 }
 
-.topleft {
+.top_field {
     display: flex;
     justify-content: center;
 }
 
-#levelDown, #levelUp {
-    font-weight: 800;
-    cursor: pointer;
+.gridcontainer {
+    display: grid;
+    width: 800px;
+    grid-template-columns: 10% 25% 25% 9% 20% 11%;
+    grid-template-rows: 50px;
+    grid-template-areas: 
+    "sprite name nickname level ability submit";
+}
+
+.gridcontainer input, .gridcontainer button, .gridcontainer select {
+    height: 30px;
+    margin: 10px 10px 0 0
+}
+
+#previewSprite {
+    width: 60px;
+    padding-left: 8px;
 }
 
 /* Current Team */
@@ -86,10 +121,10 @@ li {
 .listgrid {
     display: grid;
     width: 700px;
-    grid-template-columns: 10% 22% 13% 22% 8% 7% 11% 7%;
+    grid-template-columns: 10% 14% 10% 14% 8% 7% 9% 14% 7% 7%;
     grid-template-rows: 50px;
     grid-template-areas: 
-    "name name nickname nickname level level favourite remove";
+    "name name nickname nickname level level ability ability favourite remove";
 }
 
 .team_title {
