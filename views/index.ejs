@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/pokemon.png">
     <title>Sean's Pokémon Team Builder</title>
@@ -16,15 +17,21 @@
         <img class="h1img imgfour" src="/pokemon.png">
         <h1>Sean's Pokémon Team Builder</h1>
         <h2>Add a new Pokémon to your team:</h2>
-        <div class="topleft">
+        <div class="search">
+			<input type="text" placeholder="Search for a Pokémon e.g. Bulbasaur"><button id="search">Search</button>
+		</div>
+        <div class="top_field">
             <fieldset>
-                <legend>Add a Pokémon to your team</legend>
-                <form action="/stats" method="POST">
-                    <input type="text" placeholder="Pokémon" name="name" required>
-                    <input type="text" placeholder="Nickname" name="nickname" required>
-                    <span>Level: </span><input type="number" name="level" min="1" max="100" required>
-                    <button id="submit" type="submit">Submit</button>
-                </form>
+                <legend>Pokémon Info</legend>
+                    <form action="/stats" method="POST" class="gridcontainer">
+                        <img id="previewSprite" name="" src="">
+                        <input type="text" placeholder="Pokémon" name="name" id="pokeNameField" readonly required>
+                        <input type="text" placeholder="Nickname (optional)" name="nickname">
+                        <input placeholder="Level" type="number" name="level" min="1" max="100" required>
+                        <select name="ability" id="abilityField" required>
+                        </select>
+                        <button id="submit" type="submit">Submit</button>
+                    </form>
             </fieldset>
         </div>
 
@@ -38,6 +45,7 @@
                                 <span class="team_title">Name: </span><span id="name"><%= poke[i].name %></span>
                                 <span class="team_title inner_title">Nickname: </span><span><%= poke[i].nickname %></span>
                                 <span class="team_title inner_title">Level: </span><span><%= poke[i].level %></span>
+                                <span class="team_title inner_title">Ability: </span><span><%= poke[i].ability %></span>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-trash-can"></i>
                             </div>
