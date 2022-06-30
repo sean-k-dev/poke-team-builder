@@ -1,3 +1,7 @@
+// -----------------------------------
+// Measure length of team
+// -----------------------------------
+
 const quantityColour = () => pokeList.length < 6 ? teamQuantity.style.color = 'green' : teamQuantity.style.color = 'red'
 
 window.onload = function() {
@@ -10,8 +14,9 @@ const updateQuantity = () => teamQuantity.innerText = `(${pokeList.length} of 6)
 const teamQuantity = document.querySelector('#teamQuantity')
 const submitForm = document.querySelector('#submit').addEventListener('click', updateQuantity, quantityColour)
 
-
+// -----------------------------------
 // Delete and Favourite Buttons
+// -----------------------------------
 
 const deleteRow = document.querySelectorAll('.fa-trash-can')
 const addToFavourites = document.querySelectorAll('.fa-star')
@@ -66,7 +71,9 @@ function deletePokemon() {
         .catch(error => console.log(error))
 }
 
-// PokéAPI fetch
+// -----------------------------------
+// PokéAPI fetch and DOM data fill
+// -----------------------------------
 
 let activeSpecies = ""
 let searchQuery = document.querySelector('.search input')
@@ -77,29 +84,61 @@ function findSpecies() {
         .then (data => {
             console.log(data)
             clearDropdown(document.getElementById('abilityField'))
+            clearDropdown(document.getElementById('moveFieldA'))
+            clearDropdown(document.getElementById('moveFieldB'))
+            clearDropdown(document.getElementById('moveFieldC'))
+            clearDropdown(document.getElementById('moveFieldD'))
+
             document.querySelector('#pokeNameField').value = data.name.charAt(0).toUpperCase() + data.name.slice(1,data.name.length)
+        
             for (let i = 0; i < data.abilities.length; i++){
                 let opt = document.createElement('option')
                 opt.value = data.abilities[i].ability.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
-                console.log(opt.value)
                 opt.innerHTML = data.abilities[i].ability.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
                 opt.classList = "ability-dropdown"
                 document.querySelector('#abilityField').appendChild(opt)
             }
-            document.querySelector("#previewSprite").src = data.sprites.front_default
-            document.querySelector("#previewSprite").name = data.sprites.front_default
+
+            document.querySelector("#previewSprite").src = `https://img.pokemondb.net/sprites/home/normal/${data.name}.png` 
+            document.querySelector("#previewSprite").name = `https://img.pokemondb.net/sprites/home/normal/${data.name}.png` 
+
+            for (let i = 0; i < data.moves.length; i++){
+                let opt = document.createElement('option')
+                opt.value = data.moves[i].move.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
+                opt.innerHTML = data.moves[i].move.name.replace(/[-]/g," ").replace(/\b\w/g, x => x.toUpperCase())
+                opt.classList = "move-dropdown"
+                let newOptB = opt.cloneNode(true)
+                let newOptC = newOptB.cloneNode(true)
+                let newOptD = newOptC.cloneNode(true)
+                document.querySelector('#moveFieldA').appendChild(opt)
+                document.querySelector('#moveFieldB').options.add(newOptB)
+                document.querySelector('#moveFieldC').options.add(newOptC)
+                document.querySelector('#moveFieldD').options.add(newOptD)
+            }
+
+            document.querySelectorAll('.randombutton').forEach(x => x.addEventListener('click', () => { 
+                const dropdown = document.getElementById(`${this.parentNode.childNodes[1].id}`)
+                console.log(this.parentNode.childNodes[1].id)
+                const opt = dropdown.children
+                dropdown.value = opt[Math.floor(Math.random() * data.moves.length)].value    
+            }))
         })
-        .catch(err => {console.log(`error ${err}`)})
+        // .catch(err => {console.log(`error ${err}`)})
 }
 
 
+// -----------------------------------
+// Search Bar
+// -----------------------------------
 
 document.querySelector('#search').addEventListener('click', () => {
   activeSpecies = searchQuery.value.toLowerCase()
   findSpecies()
 })
 
+// -----------------------------------
 // Activate search upon pressing Enter key
+// -----------------------------------
 document.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
       event.preventDefault();
@@ -107,13 +146,20 @@ document.addEventListener("keyup", function(event) {
   }
 });
 
- function clearDropdown(opt) {
+// -----------------------------------
+// Clear values from Dropdown Box
+// -----------------------------------  
+function clearDropdown(opt) {
     let length = opt.options.length -1
     for(let i = length; i >= 0; i--) {
         opt.remove(i)
     }
- }
- 
+}
+
+document.getElementsByClassName('.randombutton').forEach(x => x.addEventListener('click', () => {
+    console.log(this.parentNode.childNodes[1].value)
+}))
+
 
 // function checkLength() {
 //     document.querySelectorAll(".current_team li")
