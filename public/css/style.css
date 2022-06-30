@@ -81,25 +81,50 @@ h2 {
 .top_field {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .gridcontainer {
     display: grid;
-    width: 800px;
-    grid-template-columns: 10% 25% 25% 9% 20% 11%;
-    grid-template-rows: 50px;
+    width: 400px;
+    /* grid-template-columns: 10% 25% 25% 9% 20% 11%; */
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
     grid-template-areas: 
-    "sprite name nickname level ability submit";
+    "sprite name nickname level ability submit"
+    "moves move1 move2 move3 move4";
 }
 
 .gridcontainer input, .gridcontainer button, .gridcontainer select {
-    height: 30px;
-    margin: 10px 10px 0 0
+    height: 25px;
+    margin-bottom: 10px
 }
 
 #previewSprite {
-    width: 60px;
-    padding-left: 8px;
+    width: 120px;
+    padding: 0 0 10px 8px;
+    margin: 0 auto;
+}
+
+.top_field span {
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.top_field li select {
+    width: 335px;
+    margin-right: 20px;
+}
+
+.top_field li i {
+    font-size: 27px;
+    vertical-align: middle;
+}
+
+.top_field li i:active{
+    color: rgb(255, 0, 0);
+    text-shadow: 1px 1px 1px black;
 }
 
 /* Current Team */
@@ -113,7 +138,7 @@ h2 {
     color: green;
 }
 
-li {
+.team_member {
     list-style-type: none;
     padding: 15px 0px;
 }

@@ -18,7 +18,7 @@
         <h1>Sean's Pokémon Team Builder</h1>
         <h2>Add a new Pokémon to your team:</h2>
         <div class="search">
-			<input type="text" placeholder="Search for a Pokémon e.g. Bulbasaur"><button id="search">Search</button>
+			<input type="text" placeholder="Search for a Pokémon by name or National Dex number"><button id="search">Search</button>
 		</div>
         <div class="top_field">
             <fieldset>
@@ -30,6 +30,29 @@
                         <input placeholder="Level" type="number" name="level" min="1" max="100" required>
                         <select name="ability" id="abilityField" required>
                         </select>
+                       
+                        <span>Moves:</span>
+                        <ul>
+                            <li>
+                                <select name="firstmove" id="moveFieldA" class="movefield" required>
+                                </select>
+                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                            </li>
+                            <li>
+                                <select name="secondmove" id="moveFieldB" class="movefield">
+                                </select>
+                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                            </li>
+                            <li>
+                                <select name="thirdmove" id="moveFieldC" class="movefield">
+                                </select>
+                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                            </li>
+                            <li>
+                                <select name="fourthmove" id="moveFieldD" class="movefield">
+                                </select>
+                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                        </li> 
                         <button id="submit" type="submit">Submit</button>
                     </form>
             </fieldset>
