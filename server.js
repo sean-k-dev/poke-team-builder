@@ -32,8 +32,9 @@ app.get("/",(req, res) => {
 })
 
 app.post("/stats", (req, res) => {
-    if (db.collection("poke").count() > 5) return
-    else db.collection("poke").insertOne(req.body)
+    // if (db.collection("poke").count() > 5) return
+    // else db.collection("poke").insertOne(req.body)
+    console.log(req.body.nickname)
     .then(result => {
         console.log("Update successfully sent to the database.")
         console.log(req.body)
@@ -59,7 +60,7 @@ app.put("/favourite", (req, res) => {
 })
 
 app.delete("/deletePoke", (req, res) => {
-    db.collection("poke").deleteOne({name: req.body.name, level: req.body.level})
+    db.collection("poke").deleteOne({name: req.body.name, level: req.body.level, ability: req.body.ability})
     .then(result => {
         res.json(`Removed Pokémon from the team`)
     })
