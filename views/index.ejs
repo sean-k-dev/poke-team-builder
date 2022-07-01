@@ -22,11 +22,12 @@
 		</div>
         <div class="top_field">
             <fieldset>
-                <legend>Pokémon Info</legend>
+                <legend><button id="hideField">Hide</button> Pokémon Info </legend>
                     <form action="/stats" method="POST" class="gridcontainer">
-                        <img id="previewSprite" name="" src="">
+                        <img id="previewSprite" src="">
                         <input type="text" placeholder="Pokémon" name="name" id="pokeNameField" readonly required>
-                        <input type="text" placeholder="Nickname (optional)" name="nickname">
+                        <input type="text" placeholder="(optional) Nickname: max 12 characters" name="nickname" maxlength="12">
+                        <input id="spriteData" type="hidden" name="sprite">
                         <input placeholder="Level" type="number" name="level" min="1" max="100" required>
                         <select name="ability" id="abilityField" required>
                         </select>
@@ -36,22 +37,22 @@
                             <li>
                                 <select name="firstmove" id="moveFieldA" class="movefield" required>
                                 </select>
-                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                                <i class="fa-solid fa-dice randombutton"></i>
                             </li>
                             <li>
                                 <select name="secondmove" id="moveFieldB" class="movefield">
                                 </select>
-                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                                <i class="fa-solid fa-dice randombutton"></i>
                             </li>
                             <li>
                                 <select name="thirdmove" id="moveFieldC" class="movefield">
                                 </select>
-                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                                <i class="fa-solid fa-dice randombutton"></i>
                             </li>
                             <li>
                                 <select name="fourthmove" id="moveFieldD" class="movefield">
                                 </select>
-                                <i class="fa-solid fa-dice" class="randombutton"></i>
+                                <i class="fa-solid fa-dice randombutton"></i>
                         </li> 
                         <button id="submit" type="submit">Submit</button>
                     </form>
@@ -65,17 +66,30 @@
                     <% for(let i = 0; i < poke.length; i++) {%>
                         <li class="team_member">
                             <div class="listgrid">
-                                <span class="team_title">Name: </span><span id="name"><%= poke[i].name %></span>
-                                <span class="team_title inner_title">Nickname: </span><span><%= poke[i].nickname %></span>
-                                <span class="team_title inner_title">Level: </span><span><%= poke[i].level %></span>
-                                <span class="team_title inner_title">Ability: </span><span><%= poke[i].ability %></span>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-trash-can"></i>
+                                <div class="sprite">
+                                    <img class="team_sprite" src=" <%= poke[i].sprite%> ">
+                                </div>
+                                <div class="names">
+                                    <span class="team_nickname"><%= poke[i].nickname === "" ? poke[i].name : poke[i].nickname %></span>
+                                    <span id="name" class="team_name"><%= "(" + poke[i].name + ")" %></span>
+                                    <h3 class="team_title inner_title team_level">Level: <span><%= poke[i].level %></span></h3>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-trash-can"></i>
+                                    <span class="team_title inner_title ability_title">Ability: </span><span><%= poke[i].ability %></span>
+                                </div>
+                                <div class="moves">
+                                    <span class="team_title move_title">Moves: </span>
+                                    <p class="movepool"><%= poke[i].firstmove %></p>
+                                    <p class="movepool"><%= poke[i].secondmove %></p>
+                                    <p class="movepool"><%= poke[i].thirdmove %></p>
+                                    <p class="movepool"><%= poke[i].fourthmove %></p>
+                                </div>
                             </div>
+                            
                         </li>
                     <% } %>
                 </ul>
-            </fieldset>
+            </fieldset> 
         </div>
         <script src="/js/main.js"></script>
         <script src="https://kit.fontawesome.com/a10b503942.js" crossorigin="anonymous"></script>
