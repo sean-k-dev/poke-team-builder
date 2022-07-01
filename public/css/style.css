@@ -132,6 +132,8 @@ h2 {
 .currentfield {
     display: flex;
     justify-content: center;
+    max-width: 800px;
+    margin: auto;
 }
 
 #teamQuantity {
@@ -140,20 +142,78 @@ h2 {
 
 .team_member {
     list-style-type: none;
-    padding: 15px 0px;
+    /* padding: 15px 0px; */
+    border: 3px double rgb(0, 0, 0);
+    border-radius: 5px;
+    margin: 0 0 5px 5px;
+    width: 250px;
+    float: left;
+    text-align: center;
 }
 
 .listgrid {
     display: grid;
-    width: 700px;
-    grid-template-columns: 10% 14% 10% 14% 8% 7% 9% 14% 7% 7%;
-    grid-template-rows: 50px;
+    grid-template-columns: 250px; 
+    grid-template-rows: 140px 90px 40px 160px; 
+    gap: 0px 0px; 
     grid-template-areas: 
-    "name name nickname nickname level level ability ability favourite remove";
+      "sprite"
+      "names"
+      "ability"
+      "moves"
+  }
+  .sprite { grid-area: sprite; }
+  .moves { grid-area: moves; }
+  .names { grid-area: names; }
+  .ability { grid-area: ability; }
+
+.sprite {
+    place-items: center;
+} 
+
+.team_sprite {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.team_nickname {
+    font-size: 20px;
+    font-weight: 700px;
+}
+
+.team_name {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.team_level {
+    padding-top: 10px;
+}
+
+.listgrid i {
+    padding: 15px 20px 0 20px;
+}
+
+.listgrid img {
+    padding-top: 10px;
 }
 
 .team_title {
     font-weight: 700;
+}
+
+.move_title {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.ability_title {
+    display: block;
+    padding-top: 15px;
+}
+
+.moves {
+    margin-top: 10px;
 }
 
 .fa-star:hover {
@@ -169,5 +229,23 @@ h2 {
 .fa-trash-can::selection {
     color: rgb(170, 31, 31);
     font-weight: 800;
+}
+
+.movelist {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20px;
+    grid-template-areas: 
+    "title move move move move";
+    padding: 0 0 5px 108px;
+}
+
+.movepool {
+    font-size: 16px;
+    color: rgb(114, 114, 114);
+    font-weight: 700;
+    border: 1px solid black;
+    padding-bottom: 5px;
+    margin: 0 15px 5px 10px;
 }
 

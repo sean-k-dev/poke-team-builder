@@ -52,14 +52,17 @@ function addFave() {
 }
 
 function deletePokemon() {
-    const pName = this.parentNode.childNodes[2].innerText
-    const pLevel = this.parentNode.childNodes[8].innerText
+    const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
+    const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
+    const pAbility = this.parentNode.childNodes[12].innerText
+    // console.log(this.parentNode.childNodes[3].innerText + " " + this.parentNode.childNodes[5].innerText.replace(/\D/g, "") + " " + this.parentNode.childNodes[12].innerText)
     fetch('/deletePoke', {
             method: 'delete',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 'name': pName,
-                'level': pLevel
+                'level': pLevel,
+                'ability': pAbility
             })
         })
         .then(res => {
@@ -100,7 +103,7 @@ function findSpecies() {
             }
 
             document.querySelector("#previewSprite").src = `https://img.pokemondb.net/sprites/home/normal/${data.name}.png` 
-            document.querySelector("#previewSprite").name = `https://img.pokemondb.net/sprites/home/normal/${data.name}.png` 
+            document.querySelector("#spriteData").value = `https://img.pokemondb.net/sprites/home/normal/${data.name}.png` 
 
             for (let i = 0; i < data.moves.length; i++){
                 let opt = document.createElement('option')
@@ -116,9 +119,8 @@ function findSpecies() {
                 document.querySelector('#moveFieldD').options.add(newOptD)
             }
 
-            document.querySelectorAll('.randombutton').forEach(x => x.addEventListener('click', () => { 
-                const dropdown = document.getElementById(`${this.parentNode.childNodes[1].id}`)
-                console.log(this.parentNode.childNodes[1].id)
+            Array.from(document.querySelectorAll('.randombutton')).forEach(x => x.addEventListener('click', function() { 
+                const dropdown = document.getElementById(this.parentNode.childNodes[1].id)
                 const opt = dropdown.children
                 dropdown.value = opt[Math.floor(Math.random() * data.moves.length)].value    
             }))
@@ -126,11 +128,9 @@ function findSpecies() {
         // .catch(err => {console.log(`error ${err}`)})
 }
 
-
 // -----------------------------------
 // Search Bar
 // -----------------------------------
-
 document.querySelector('#search').addEventListener('click', () => {
   activeSpecies = searchQuery.value.toLowerCase()
   findSpecies()
@@ -144,7 +144,7 @@ document.addEventListener("keyup", function(event) {
       event.preventDefault();
       document.getElementById("search").click();
   }
-});
+})
 
 // -----------------------------------
 // Clear values from Dropdown Box
@@ -156,9 +156,26 @@ function clearDropdown(opt) {
     }
 }
 
-document.getElementsByClassName('.randombutton').forEach(x => x.addEventListener('click', () => {
-    console.log(this.parentNode.childNodes[1].value)
-}))
+// Array.from(document.getElementsByClassName('.randombutton')).forEach(x => x.addEventListener('click', () => {
+//     console.log(document.querySelector('select').value)
+// }))
+
+// -----------------------------------
+// Pokémon Info Accordion
+// -----------------------------------  
+let fieldState = false
+const hideField = document.querySelector('#hideField')
+hideField.addEventListener('click', () => {
+    if (fieldState === false) {
+        document.querySelector('.gridcontainer').style.display = "none"
+        hideField.innerText = "Show"
+        fieldState = true
+    } else if (fieldState === true) {
+        document.querySelector('.gridcontainer').style.display = "grid"
+        hideField.innerText = "Hide"
+        fieldState = false
+    }
+})
 
 
 // function checkLength() {
