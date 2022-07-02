@@ -4,6 +4,9 @@ My Pokémon Team Builder project is a full stack web application built using JS,
 
 Project is deployed on Heroku and is being continually updated: https://sean-poke-team-builder.herokuapp.com/
 
+![Screenshot 2022-07-02 214307](https://user-images.githubusercontent.com/101055915/177015697-a008e933-bbbc-494e-ae2b-0ed2016a8ed6.jpg)
+
+
 # Features I would still like to add
 - Functional favourite button
 - Capped team length of 6 document entries in Mongo.DB
