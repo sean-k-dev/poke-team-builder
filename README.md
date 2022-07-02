@@ -9,3 +9,4 @@ Project is deployed on Heroku and is being continually updated: https://sean-pok
 - Capped team length of 6 document entries in Mongo.DB
 - Potentially unique teams with the ability to make a new trainer, possibly with an authentication system
 - On hover tooltips with descriptions of moves and abilities
+- Mobile responsiveness
