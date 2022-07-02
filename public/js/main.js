@@ -25,20 +25,38 @@ Array.from(deleteRow).forEach(x => {
     x.addEventListener('click', deletePokemon)
 })
 
+
+
 Array.from(addToFavourites).forEach(x => {
     x.addEventListener('click', addFave)
 })
 
+function faveState() {
+    let state = this.parentNode.childNodes[11]
+    if (state.innerText == "false") {
+        state.innerText = "true"
+        state.style.fontWeight = "700"
+        state.style.color = "gold"
+    } else if (state.innerText == "true") {
+        state.innerText = "false"
+        state.style.fontWeight = "400"
+        state.style.color = "black"
+    }
+    console.log(state.innerText)
+}
+
 function addFave() {
-    const pName = this.parentNode.childNodes[2].innerText
-    const pLevel = this.parentNode.childNodes[8].innerText
+    const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
+    const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
+    const pAbility = this.parentNode.childNodes[14].innerText
+    const pFave = this.parentNode.childNodes[11].innerText
+    console.log(pName + " " + pLevel + " " + pAbility + " " + pFave)
     fetch('/favourite', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'name': pName,
-              'level': pLevel,
-              'favourite': true
+                'name': pName,
+                'favourite': pFave
             })
           })
         .then(res => {
@@ -54,7 +72,7 @@ function addFave() {
 function deletePokemon() {
     const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
     const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
-    const pAbility = this.parentNode.childNodes[12].innerText
+    const pAbility = this.parentNode.childNodes[14].innerText
     // console.log(this.parentNode.childNodes[3].innerText + " " + this.parentNode.childNodes[5].innerText.replace(/\D/g, "") + " " + this.parentNode.childNodes[12].innerText)
     fetch('/deletePoke', {
             method: 'delete',

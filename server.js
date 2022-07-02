@@ -32,9 +32,7 @@ app.get("/",(req, res) => {
 })
 
 app.post("/stats", (req, res) => {
-    // if (db.collection("poke").count() > 5) return
-    // else db.collection("poke").insertOne(req.body)
-    console.log(req.body.nickname)
+    db.collection("poke").insertOne(req.body)
     .then(result => {
         console.log("Update successfully sent to the database.")
         console.log(req.body)

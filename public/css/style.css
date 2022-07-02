@@ -209,11 +209,15 @@ h2 {
 
 .ability_title {
     display: block;
-    padding-top: 15px;
+    padding: 15px 0 5px 0;
 }
 
 .moves {
-    margin-top: 10px;
+    margin-top: 18px;
+}
+
+fa-star {
+    color: black;
 }
 
 .fa-star:hover {
@@ -247,5 +251,9 @@ h2 {
     border: 1px solid black;
     padding-bottom: 5px;
     margin: 0 15px 5px 10px;
+}
+
+#isFavourite {
+    display: none;
 }
 
