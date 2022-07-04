@@ -31,8 +31,11 @@ app.get("/",(req, res) => {
     .catch(error => console.error(error))
 })
 
+
 app.post("/stats", (req, res) => {
+    req.body.shiny == "on" ? req.body.sprite.replace('normal', 'shiny') : req.body
     db.collection("poke").insertOne(req.body)
+    
     .then(result => {
         console.log("Update successfully sent to the database.")
         console.log(req.body)
@@ -42,17 +45,17 @@ app.post("/stats", (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.put("/favourite", (req, res) => {
+app.put("/shiny", (req, res) => {
     db.collection("poke").updateOne(req.body,{
         $set: {
-            favourite: req.body.favourite
+            sprite: req.body.sprite
           }
     },{
         upsert: true
     })
     .then(result => {
-        console.log(`Set ${req.body.name} as a favourite.`)
-        res.json("Added to favourites")
+        console.log(`Set ${req.body.name}'s shiny status.`)
+        res.json("Toggled shiny status")
     })
     .catch(error => console.error(error))
 })
@@ -64,7 +67,6 @@ app.delete("/deletePoke", (req, res) => {
     })
     .catch(error => console.error(error))
 })
-
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`The server is now running on port ${PORT}`)
