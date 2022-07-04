@@ -6,6 +6,11 @@ Project is deployed on Heroku and is being continually updated: https://sean-pok
 
 ![Screenshot 2022-07-02 214307](https://user-images.githubusercontent.com/101055915/177015697-a008e933-bbbc-494e-ae2b-0ed2016a8ed6.jpg)
 
+#Prerequisite packages:
+- Express
+- MongoDB
+- Dotenv
+- EJS
 
 # Features I would still like to add
 - Functional favourite button
