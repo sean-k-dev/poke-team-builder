@@ -24,7 +24,7 @@
             <fieldset>
                 <legend><button id="hideField">Hide</button> Pokémon Info </legend>
                     <form action="/stats" method="POST" class="gridcontainer">
-                        <img id="previewSprite" src="">
+                        <img id="previewSprite" alt="" src="">
                         <input type="text" placeholder="Pokémon" name="name" id="pokeNameField" readonly required>
                         <input type="text" placeholder="(optional) Nickname: max 12 characters" name="nickname" maxlength="12">
                         <input id="spriteData" type="hidden" name="sprite">
@@ -33,7 +33,7 @@
                         <select name="ability" id="abilityField" required>
                         </select>
                        
-                        <span>Moves:</span>
+                        <span class="movetitle">Moves:</span>
                         <ul>
                             <li>
                                 <select name="firstmove" id="moveFieldA" class="movefield" required>
@@ -54,7 +54,8 @@
                                 <select name="fourthmove" id="moveFieldD" class="movefield">
                                 </select>
                                 <i class="fa-solid fa-dice randombutton"></i>
-                        </li> 
+                        </li>
+                        <span class="shinytitle">Shiny: <input type="checkbox" name="shiny" id="shinyCheck"></span>  
                         <button id="submit" type="submit">Submit</button>
                     </form>
             </fieldset>
@@ -68,7 +69,7 @@
                         <li class="team_member">
                             <div class="listgrid">
                                 <div class="sprite">
-                                    <img class="team_sprite" src=" <%= poke[i].sprite%> ">
+                                    <img class="team_sprite" alt=" <%= poke[i].name %> " src=" <%= poke[i].sprite%> ">
                                 </div>
                                 <div class="names">
                                     <span class="team_nickname"><%= poke[i].nickname === "" ? poke[i].name : poke[i].nickname %></span>
