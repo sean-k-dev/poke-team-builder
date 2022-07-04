@@ -11,7 +11,7 @@ body {
 
 main {
     width: 60%;
-    min-width: 1000px;
+    min-width: 900px;
     margin: auto;
     background-color: white;
     border: 2px solid black;
@@ -108,8 +108,15 @@ h2 {
 
 .top_field span {
     padding-bottom: 10px;
-    font-weight: 700;
     font-size: 16px;
+}
+
+.movetitle {
+    font-weight: 700;
+}
+
+.shinytitle {
+    font-weight: 400;
 }
 
 .top_field li select {
@@ -125,6 +132,17 @@ h2 {
 .top_field li i:active{
     color: rgb(255, 0, 0);
     text-shadow: 1px 1px 1px black;
+}
+
+#shinyCheck {
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+#submit {
+    padding: 0 20px;
+    font-size: 16px;
+    margin-left: 230px;
 }
 
 /* Current Team */
