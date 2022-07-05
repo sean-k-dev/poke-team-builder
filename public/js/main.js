@@ -10,7 +10,7 @@ window.onload = function() {
 }
 
 const pokeList = document.querySelectorAll(".current_team li")
-const updateQuantity = () => teamQuantity.innerText = `(${pokeList.length} of 6)`
+const updateQuantity = () => teamQuantity.innerText = `(${pokeList.length < 6 ? pokeList.length : 6} of 6)`
 const teamQuantity = document.querySelector('#teamQuantity')
 const submitForm = document.querySelector('#submit').addEventListener('click', checkLength, quantityColour)
 
