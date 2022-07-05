@@ -160,13 +160,13 @@ h2 {
 
 .team_member {
     list-style-type: none;
-    /* padding: 15px 0px; */
     border: 3px double rgb(0, 0, 0);
     border-radius: 5px;
     margin: 0 0 5px 5px;
     width: 250px;
     float: left;
     text-align: center;
+    position: relative;
 }
 
 .listgrid {
@@ -188,6 +188,14 @@ h2 {
 .sprite {
     place-items: center;
 } 
+
+.sparkle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 10px 0 0;
+    width: 40px;
+}
 
 .team_sprite {
     width: 120px;
