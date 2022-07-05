@@ -72,6 +72,7 @@
                                     <img class="team_sprite" alt=" <%= poke[i].name %> " src=" <%= poke[i].sprite%> ">
                                 </div>
                                 <div class="names">
+                                    <img class="sparkle" src=" <%= poke[i].shiny === 'on' ? 'sparkle.png' : 'regular.png' %> "
                                     <span class="team_nickname"><%= poke[i].nickname === "" ? poke[i].name : poke[i].nickname %></span>
                                     <span id="name" class="team_name"><%= "(" + poke[i].name + ")" %></span>
                                     <h3 class="team_title inner_title team_level">Level: <span><%= poke[i].level %></span></h3>
