@@ -242,11 +242,12 @@ h2 {
     margin-top: 18px;
 }
 
-fa-star {
+.faveoff {
     color: black;
+    font-weight: 400;
 }
 
-.fa-star:hover {
+.fa-star:hover, .faveon {
     color: gold;
     font-weight: 700;
 }
