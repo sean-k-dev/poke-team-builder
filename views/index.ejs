@@ -76,7 +76,7 @@
                                     <span class="team_nickname"><%= poke[i].nickname === "" ? poke[i].name : poke[i].nickname %></span>
                                     <span id="name" class="team_name"><%= "(" + poke[i].name + ")" %></span>
                                     <h3 class="team_title inner_title team_level">Level: <span><%= poke[i].level %></span></h3>
-                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star <%= poke[i].favourite == 'true' ? 'faveon' : 'faveoff' %>"></i>
                                     <i class="fa-regular fa-trash-can"></i>
                                     <span id="isFavourite"><%= poke[i].favourite %></span>
                                     <span class="team_title inner_title ability_title">Ability: </span><span><%= poke[i].ability %></span>
