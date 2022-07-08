@@ -5,7 +5,7 @@
 const quantityColour = () => pokeList.length < 6 ? teamQuantity.style.color = 'green' : teamQuantity.style.color = 'red'
 
 window.onload = function() {
-    checkLength();
+    checkLength()
     quantityColour()
 }
 
@@ -37,52 +37,49 @@ Array.from(deleteRow).forEach(x => {
 })
 
 Array.from(addToFavourites).forEach(x => {
-    x.addEventListener('click', faveState)
+    x.addEventListener('click', setShiny)
 })
 
-function faveState() {
-    let state = this.parentNode.childNodes[11]
-    if (state.innerText == "false") {
-        state.innerText = "true"
-        state.style.fontWeight = "700"
-        state.style.color = "gold"
-    } else if (state.innerText == "true") {
-        state.innerText = "false"
-        state.style.fontWeight = "400"
-        state.style.color = "black"
-    }
-    console.log(state.innerText)
-}
+// function faveState() {
+    // let faveStyle = this.parentNode.childNodes[7]
+    // let state = this.parentNode.childNodes[11]
+    // const faveOn = () => { faveStyle.style.fontWeight = "700"; faveStyle.style.color = "gold" }
+    // const faveOff = () => { faveStyle.style.fontWeight = "400"; faveStyle.style.color = "black" }
+   
+    // if (state.innerText == "false") {
+    //     state.innerText = "true"
+    //     faveOn()
+    // } else if (state.innerText == "true") {
+    //     state.innerText = "false"
+    //     faveOff()
+    // }
+    // // console.log(state.innerText)
+
+    // setShiny()
 
 function setShiny() {
-    const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
-    const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
-    const pAbility = this.parentNode.childNodes[14].innerText
-    const pShiny = this.parentNode.parentNode.childNodes[1].childNodes[1].src.replace("normal","shiny")
-    console.log(this.parentNode.parentNode.childNodes[1].childNodes[1].src)
-    fetch('/shiny', {
+    let pFave = this.parentNode.childNodes[11].innerText
+    pFave == "false" ? pFave = "true" : pFave = "false"
+    console.log(pFave)
+    fetch('/fave', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'name': pName,
-                'sprite': pShiny
+                'favourite': pFave
             })
-          })
+        })
         .then(res => {
             res.json("Colour scheme altered")
         })
-        .then(data => {
-            console.log(data)
-            // location.reload()
-        })
+        // location.reload()
         .catch(error => console.log(error))
 }
+
 
 function deletePokemon() {
     const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
     const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
     const pAbility = this.parentNode.childNodes[14].innerText
-    // console.log(this.parentNode.childNodes[3].innerText + " " + this.parentNode.childNodes[5].innerText.replace(/\D/g, "") + " " + this.parentNode.childNodes[12].innerText)
     fetch('/deletePoke', {
             method: 'delete',
             headers: { 'Content-Type': 'application/json' },
