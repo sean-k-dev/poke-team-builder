@@ -45,17 +45,18 @@ app.post("/stats", (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.put("/shiny", (req, res) => {
-    db.collection("poke").updateOne(req.body,{
+app.put("/fave", (req, res) => {
+    db.collection("poke").findOneAndUpdate(req.body,{
         $set: {
-            sprite: req.body.sprite
+            favourite: req.body.favourite
           }
-    },{
-        upsert: true
-    })
+    },
+    // {
+    //     upsert: false
+    // }
+    )
     .then(result => {
-        console.log(`Set ${req.body.name}'s shiny status.`)
-        res.json("Toggled shiny status")
+        console.log(`Updated Pokemon's shiny status.`)
     })
     .catch(error => console.error(error))
 })

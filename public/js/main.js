@@ -36,9 +36,9 @@ Array.from(deleteRow).forEach(x => {
     x.addEventListener('click', deletePokemon)
 })
 
-// Array.from(addToFavourites).forEach(x => {
-//     x.addEventListener('click', setShiny)
-// })
+Array.from(addToFavourites).forEach(x => {
+    x.addEventListener('click', faveState)
+})
 
 function faveState() {
     let state = this.parentNode.childNodes[11]
