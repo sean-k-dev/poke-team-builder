@@ -4,6 +4,7 @@ const MongoClient = require("mongodb").MongoClient
 const bodyParser = require("body-parser")
 const PORT = 8000
 require("dotenv").config()
+const ObjectID = require('mongodb').ObjectID  
 
 
 let db,
@@ -46,17 +47,16 @@ app.post("/stats", (req, res) => {
 })
 
 app.put("/fave", (req, res) => {
-    db.collection("poke").findOneAndUpdate(req.body,{
+    console.log(db.collection("poke")._id)
+    db.collection('poke').updateOne({name: req.body.name, level: req.body.level, ability: req.body.ability, favourite: req.body.favourite},{
         $set: {
-            favourite: req.body.favourite
+            favourite: req.body.favourite == "false" ? "true" : "false"
           }
     },
-    // {
-    //     upsert: false
-    // }
+    { returnOriginal: true, upsert: false}
     )
     .then(result => {
-        console.log(`Updated Pokemon's shiny status.`)
+        console.log(result)
     })
     .catch(error => console.error(error))
 })
