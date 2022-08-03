@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/pokemon.png">
+    <link rel="icon" href="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/pokemon-icon.png">
     <title>Sean's Pokémon Team Builder</title>
 </head>
 <body>
@@ -76,8 +76,8 @@
                                     <span class="team_nickname"><%= poke[i].nickname === "" ? poke[i].name : poke[i].nickname %></span>
                                     <span id="name" class="team_name"><%= "(" + poke[i].name + ")" %></span>
                                     <h3 class="team_title inner_title team_level">Level: <span><%= poke[i].level %></span></h3>
-                                    <i class="fa-regular fa-star <%= poke[i].favourite == 'true' ? 'faveon' : 'faveoff' %>"></i>
-                                    <i class="fa-regular fa-trash-can"></i>
+                                    <i class="fa-regular fa-star <%= poke[i].favourite == 'true' ? 'faveon' : 'faveoff' %>" data-tippy-content="Toggle Favourite"></i>
+                                    <i class="fa-regular fa-trash-can" data-tippy-content="Remove from team"></i>
                                     <span id="isFavourite"><%= poke[i].favourite %></span>
                                     <span class="team_title inner_title ability_title">Ability: </span><span><%= poke[i].ability %></span>
                                 </div>
@@ -96,6 +96,12 @@
         </div>
         <script src="/js/main.js"></script>
         <script src="https://kit.fontawesome.com/a10b503942.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js@1"></script>
+        <script src="https://unpkg.com/tippy.js@5"></script>
+        <script>
+            tippy('[data-tippy-content]', {placement: 'bottom'})
+            tippy('.fa-dice', {content: 'Select a random move from the movepool', placement: 'right'})
+        </script>
     </main>
 </body>
 </html>
