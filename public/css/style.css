@@ -247,7 +247,12 @@ h2 {
     font-weight: 400;
 }
 
-.fa-star:hover, .faveon {
+.faveon {
+    color: gold;
+    text-shadow: 0px 1px 0px black;
+}
+
+.fa-star:hover {
     color: gold;
     font-weight: 700;
 }
@@ -284,3 +289,6 @@ h2 {
     display: none;
 }
 
+.tippy-tooltip{
+    font-family: "Ubuntu", sans-serif;
+}
