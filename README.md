@@ -13,8 +13,8 @@ Project is deployed on Heroku and is being continually updated: https://sean-pok
 - EJS
 
 # Features I would still like to add
-- Functional favourite button
+- <del>Functional favourite button</del> ✔️
 - Capped team length of 6 document entries in Mongo.DB
 - Potentially unique teams with the ability to make a new trainer, possibly with an authentication system
-- On hover tooltips with descriptions of moves and abilities
+- On hover tooltips with descriptions of moves and abilities (added tooltips for some elements so far)
 - Mobile responsiveness
