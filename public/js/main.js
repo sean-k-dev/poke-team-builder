@@ -37,41 +37,33 @@ Array.from(deleteRow).forEach(x => {
 })
 
 Array.from(addToFavourites).forEach(x => {
-    x.addEventListener('click', setShiny)
+    x.addEventListener('click', setFave)
 })
 
-// function faveState() {
-    // let faveStyle = this.parentNode.childNodes[7]
-    // let state = this.parentNode.childNodes[11]
-    // const faveOn = () => { faveStyle.style.fontWeight = "700"; faveStyle.style.color = "gold" }
-    // const faveOff = () => { faveStyle.style.fontWeight = "400"; faveStyle.style.color = "black" }
-   
-    // if (state.innerText == "false") {
-    //     state.innerText = "true"
-    //     faveOn()
-    // } else if (state.innerText == "true") {
-    //     state.innerText = "false"
-    //     faveOff()
-    // }
-    // // console.log(state.innerText)
-
-    // setShiny()
-
-function setShiny() {
+function setFave() {
     let pFave = this.parentNode.childNodes[11].innerText
-    pFave == "false" ? pFave = "true" : pFave = "false"
+    const pName = this.parentNode.childNodes[3].innerText.replace(/[()]/g, "")
+    const pLevel = this.parentNode.childNodes[5].innerText.replace(/\D/g, "")
+    const pAbility = this.parentNode.childNodes[14].innerText
     console.log(pFave)
     fetch('/fave', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                'name': pName,
+                'level': pLevel,
+                'ability': pAbility, 
                 'favourite': pFave
             })
         })
         .then(res => {
-            res.json("Colour scheme altered")
+            res.json("Favourited")
         })
-        // location.reload()
+        .then(data => {
+
+
+        })
+        location.reload()
         .catch(error => console.log(error))
 }
 
@@ -206,3 +198,4 @@ hideField.addEventListener('click', () => {
         fieldState = false
     }
 })
+
